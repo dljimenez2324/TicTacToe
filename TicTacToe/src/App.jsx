@@ -1,10 +1,10 @@
 import React from 'react'
-import Square from './component/Square'
+import Board from './component/Board'
 
 const App = () => {
   return (
     <>
-      <Square/>
+      <Board/>
     </>
   )
 }
