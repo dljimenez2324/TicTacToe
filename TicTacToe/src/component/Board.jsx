@@ -1,7 +1,6 @@
 // import our react component square
 import Square from "./Square"
 
-
 const Board = () => {
   return (
     <>
