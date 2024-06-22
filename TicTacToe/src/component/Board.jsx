@@ -4,29 +4,41 @@ import { useState } from "react";
 
 const Board = () => {
 
-    const [xIsNext, setXIsNext] = useState(true);
-    const [squares, setSquares] = useState(Array(9).fill(null));
+  const [xIsNext, setXIsNext] = useState(true);
+  const [squares, setSquares] = useState(Array(9).fill(null));
 
-    function handleClick(i) {
+  function handleClick(i) {
 
-      // if square is filled  then simply return with no change
-      if(squares[i]) {
-        return;
-      }
-
-      const nextSquares = squares.slice();
-      if (xIsNext) {
-        nextSquares[i] = "X";
-      }
-      else {
-        nextSquares[i] = "O";
-      }
-      setSquares(nextSquares);
-      setXIsNext(!xIsNext);
+    // if square is filled  then simply return with no change  the same is true for the calcualted winner function if its true it returns something if its false it returns null
+    if(squares[i] || calculateWinner(squares)) {
+      return;
     }
+
+    const nextSquares = squares.slice();
+    if (xIsNext) {
+      nextSquares[i] = "X";
+    }
+    else {
+      nextSquares[i] = "O";
+    }
+    setSquares(nextSquares);
+    setXIsNext(!xIsNext);
+
+  }
+
+  // functionality for a status variable is made to display on the board's return
+  const winner = calculateWinner(squares);
+  let status;
+  if (winner) {
+    status = "Winner: " + winner;
+  } else {
+    status = "Next player: " + (xIsNext ? "X" : "O");
+  }
+
 
   return (
     <>
+      <div className="status">{status}</div>
       <div className="board-row">
         <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
         <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
