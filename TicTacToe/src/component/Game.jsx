@@ -4,7 +4,7 @@ import Board from "./Board";
 
 function Game() {
 
-    // Initialize state to keep track of game history and the current move
+    // Initialize state to keep track of game history and the current move  notice that the useStates are now here and not in the  board components
     const [history, setHistory] = useState([Array(9).fill(null)]);
     const [currentMove, setCurrentMove] = useState(0);
     const xIsNext = currentMove % 2 === 0; // Determine if X is the next player
@@ -46,11 +46,11 @@ function Game() {
     return (
         <div className="game">
             <div className="game-board">
-                {/* Render the Board component */}
+                {/* Render the Board component which takes in 3 props to pass through to the Board component */}
                 <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
             </div>
             <div className="game-info">
-                {/* Render the list of moves */}
+                {/* Render the list of moves and each of these are also li tags that has a button onclick function to jump to a move */}
                 <ol>{moves}</ol>
             </div>
         </div>

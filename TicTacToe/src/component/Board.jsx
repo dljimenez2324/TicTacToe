@@ -2,18 +2,20 @@
 import Square from "./Square";
 import { useState } from "react";
 
-const Board = () => {
+// notice that the usestates are now props passed in instead of using useStates
+const Board = ( {xIsNext, squares, onPlay} ) => {
 
-  const [xIsNext, setXIsNext] = useState(true);
-  const [squares, setSquares] = useState(Array(9).fill(null));
+  // const [xIsNext, setXIsNext] = useState(true);
+  // const [squares, setSquares] = useState(Array(9).fill(null));
 
   function handleClick(i) {
 
-    // if square is filled  then simply return with no change  the same is true for the calcualted winner function if its true it returns something if its false it returns null
+    // if square is filled  then simply return with no change  the same is true for the calculated winner function if its true it returns something if its false it returns null
     if(squares[i] || calculateWinner(squares)) {
       return;
     }
 
+    // this determines who goes next
     const nextSquares = squares.slice();
     if (xIsNext) {
       nextSquares[i] = "X";
@@ -21,8 +23,10 @@ const Board = () => {
     else {
       nextSquares[i] = "O";
     }
-    setSquares(nextSquares);
-    setXIsNext(!xIsNext);
+
+    onPlay(nextSquares);
+    // setSquares(nextSquares);
+    // setXIsNext(!xIsNext);
 
   }
 
@@ -71,13 +75,15 @@ function calculateWinner(squares) {
     [1, 4, 7],
     [2, 5, 8],
     [0, 4, 8],
-    [2, 4, 6]
+    [2, 4, 6],
   ];
+  //  logic below determines if one of the indices are true and return either X or O whomever has a completed line
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
       return squares[a];
     }
   }
+   // If no winner is determined return nothing
   return null;
 }
