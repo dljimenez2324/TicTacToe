@@ -14,6 +14,6 @@ https://react.dev/learn/tutorial-tic-tac-toe <br><br>
 
 <b>GitHub:</b> https://github.com/dljimenez2324/TicTacToe <br>
 
-<b>Reviewed by:</b> your name here <br>
+<b>Reviewed by:</b> Alicia Spruell <br>
 
-<b>Comments:</b> do your review here<br>
+<b>Comments:</b>Looks good David!!! Great job :)<br>
